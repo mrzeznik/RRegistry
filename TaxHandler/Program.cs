@@ -9,7 +9,6 @@ public class TaxHandler<TElement> : ITaxHandler<TElement>
         _rules.Add(taxRule);
     }
 
-    /// <summary>Get single Tax rule from registry.</summary>
     public TaxRule<TElement> GetRule(string ruleIdentifier)
     {
         return _rules.Single(x => x.Name.Equals(ruleIdentifier));
