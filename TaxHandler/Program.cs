@@ -6,7 +6,7 @@ public interface ITaxHandler<TElement>
     TaxRule<TElement> GetRule(TElement document);
 
     /// <summary>Register new Tax rule for this handler.</summary>
-    void RegisterRule<TRule>(TaxRule<TRule> taxRule);
+    void RegisterRule(TaxRule<TElement> taxRule);
 
     /// <summary>Get single Tax rule from registry.</summary>
     TaxRule<TElement> GetRule(string ruleIdentifier);
@@ -14,19 +14,26 @@ public interface ITaxHandler<TElement>
 
 public class TaxHandler<TElement> : ITaxHandler<TElement>
 {
-    public void RegisterRule<TRule>(TaxRule<TRule> taxRule)
+    private IList<TaxRule<TElement>> _rules = new List<TaxRule<TElement>>();
+
+    public void RegisterRule(TaxRule<TElement> taxRule)
     {
-        throw new System.NotImplementedException();
+        _rules.Add(taxRule);
     }
 
     /// <summary>Get single Tax rule from registry.</summary>
     public TaxRule<TElement> GetRule(string ruleIdentifier)
     {
-        throw new System.NotImplementedException();
+        return _rules.Single(x => x.Name.Equals(ruleIdentifier));
     }
 
     public TaxRule<TElement> GetRule(TElement document)
     {
-        throw new NotImplementedException();
+        foreach (var rule in _rules)
+        {
+            if (rule.Condition.Invoke(document)) return rule;
+        }
+
+        return null;
     }
 }
