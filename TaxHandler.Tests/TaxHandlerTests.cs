@@ -57,9 +57,9 @@ public class UnitTest1
         var taxHandler = new TaxHandler<FooProduct>();
         taxHandler.RegisterRule(taxRule);
 
-        var document = FooProduct.CreateDummy();
+        var product = FooProduct.CreateDummy();
 
-        var foundTax = taxHandler.GetRule(document);
+        var foundTax = taxHandler.GetRule(product);
 
         Assert.NotNull(foundTax);
         Assert.Equal(taxRule, foundTax);
@@ -68,6 +68,7 @@ public class UnitTest1
     [Fact]
     public void Rule_NotAplicable_Fail()
     {
+        var taxHandler = new TaxHandler<FooProduct>();
         var taxRule = new TaxRule<FooProduct>()
         {
             Name = "Domestic Toys",
@@ -75,17 +76,16 @@ public class UnitTest1
             TaxValue = 5
         };
 
-        var taxHandler = new TaxHandler<FooProduct>();
         taxHandler.RegisterRule(taxRule);
 
-        var document = new FooProduct
+        var product = new FooProduct
         {
             Name = "Radio controlled car",
             Type = "TOY",
             CountryOfOrigin = "CN"
         };
 
-        var foundTax = taxHandler.GetRule(document);
+        var foundTax = taxHandler.GetRule(product);
 
         Assert.Null(foundTax);
     }
