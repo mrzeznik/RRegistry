@@ -3,19 +3,19 @@ Generic Tax handler, with user specified Tax rule registry.
 
 I frequently required to select Tax basing on some properties of element:
 - for invoice: issuer country & element type 
-- for product: product type & country of origin, etc.
-- for service: service category
+- for product: type, country of origin, etc.
 
 This project is an approach to create configurable Tax handler.
 
-## Basic usage:
+## How to use:
 1. Init Tax handler for given element type:
     ```csharp
             var taxHandler = new TaxHandler<FooProduct>();
     ```
 2. Create methods / Predicates that will serve as conditions:
     ```csharp
-    static bool IsDomesticToy(FooProduct element) => element.Type.Equals("TOY", StringComparison.OrdinalIgnoreCase)
+    static bool NonEmptyReference(FooDocument element) => !string.IsNullOrEmpty(element.Reference);  
+    static bool ProductIsDomesticToy(FooProduct element) => element.Type.Equals("TOY", StringComparison.OrdinalIgnoreCase)
             && element.CountryOfOrigin.Equals("PL", StringComparison.OrdinalIgnoreCase);
     ```
 3. Register TaxRule for handler instance:
@@ -23,7 +23,7 @@ This project is an approach to create configurable Tax handler.
     var taxRule = new TaxRule<FooProduct>()
     {
         Name = "Domestic Toys",
-        Condition = IsDomesticToy,
+        Condition = ProductIsDomesticToy,
         TaxValue = 5
     };
     taxHandler.RegisterRule(taxRule);
@@ -42,5 +42,5 @@ This project is an approach to create configurable Tax handler.
 
 ## Todo
 - set default tax
-- return all applicable tax rules instead of only first one
+- return all applicable taxes instead of first one
 
