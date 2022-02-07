@@ -41,5 +41,5 @@ This project is an approach to create configurable Tax handler.
     ```
 
 ## Todo
-- set default tax
+- ~~set default tax~~
 - return all applicable tax rules instead of only first one

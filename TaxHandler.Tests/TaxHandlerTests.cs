@@ -90,7 +90,36 @@ public class UnitTest1
         Assert.Null(foundTax);
     }
 
+    [Fact]
+    public void Rule_Default_Assigned()
+    {
+        // just create tax handler and don't register any TaxRules, other than default
+        var taxHandler = new TaxHandler<FooProduct>();
+
+        var defaultTaxRule = new TaxRule<FooProduct>()
+        {
+            Name = "Default Tax",
+            Condition = ProductNotNull,
+            TaxValue = 0
+        };
+
+        taxHandler.SetDefaultRule(defaultTaxRule);
+
+        var product = new FooProduct
+        {
+            Name = "Radio controlled car",
+            Type = "TOY",
+            CountryOfOrigin = "CN"
+        };
+
+        var foundTax = taxHandler.GetRule(product);
+
+        Assert.NotNull(foundTax);
+        Assert.Equal(defaultTaxRule, foundTax);
+    }
+
     static bool NonEmptyReference(FooDocument element) => !string.IsNullOrEmpty(element.Reference);
     static bool ProductIsDomesticToy(FooProduct element) => element.Type.Equals("TOY", StringComparison.OrdinalIgnoreCase)
         && element.CountryOfOrigin.Equals("PL", StringComparison.OrdinalIgnoreCase);
+    static bool ProductNotNull(FooProduct element) => element != null;
 }

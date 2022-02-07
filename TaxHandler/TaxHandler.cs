@@ -3,6 +3,7 @@
 public class TaxHandler<TElement> : ITaxHandler<TElement>
 {
     private IList<TaxRule<TElement>> _rules = new List<TaxRule<TElement>>();
+    private TaxRule<TElement>? _defaultTaxRule = null;
 
     public void RegisterRule(TaxRule<TElement> taxRule)
     {
@@ -21,6 +22,11 @@ public class TaxHandler<TElement> : ITaxHandler<TElement>
             if (rule.Condition.Invoke(document)) return rule;
         }
 
-        return null;
+        return _defaultTaxRule!;
+    }
+
+    public void SetDefaultRule(TaxRule<TElement>? taxRule = null)
+    {
+        _defaultTaxRule = taxRule;
     }
 }
