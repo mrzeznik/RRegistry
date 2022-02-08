@@ -1,24 +1,24 @@
-# Tax handler
-Generic Tax handler, with user specified Tax rule registry.  
+# Tax registry
+Generic Tax registry that allows to select Tax, with user specified Tax rules.  
 
 I frequently required to select Tax basing on some properties of element:
 - for invoices: issuer country & invoice date 
 - for products: product type & country of origin, etc.
 - for services: service category
 
-This project is an approach to create configurable Tax handler.
+This project is an approach to create configurable Tax registry.
 
 ## Basic usage:
-1. Init Tax handler for given element type:
+1. Init Tax registry for given element type:
     ```csharp
-    var taxHandler = new TaxHandler<FooProduct>();
+    var taxRegistry = new TaxRegistry<FooProduct>();
     ```
 2. Create methods / Predicates that will serve as conditions:
     ```csharp
     static bool IsDomesticToy(FooProduct element) => element.Type.Equals("TOY", StringComparison.OrdinalIgnoreCase)
             && element.CountryOfOrigin.Equals("PL", StringComparison.OrdinalIgnoreCase);
     ```
-3. Register TaxRule for handler instance:
+3. Register TaxRule for registry instance:
     ```csharp
     var taxRule = new TaxRule<FooProduct>()
     {
@@ -26,7 +26,7 @@ This project is an approach to create configurable Tax handler.
         Condition = IsDomesticToy,
         TaxValue = 5
     };
-    taxHandler.RegisterRule(taxRule);
+    taxRegistry.RegisterRule(taxRule);
     ```
 4. Ask to match Tax rule for given element:
     ```csharp
@@ -36,7 +36,7 @@ This project is an approach to create configurable Tax handler.
         Type = "TOY",  
         CountryOfOrigin = "PL"  
     };  
-    var foundTaxRule = taxHandler.GetRule(product);
+    var foundTaxRule = taxRegistry.GetRule(product);
     // foundTaxRule => TaxRule "Domestic Toys" 
     ```
 
