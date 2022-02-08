@@ -1,4 +1,4 @@
-namespace TaxHandler;
+namespace TaxRegistry;
 
 /// <summary>Representation of single Tax Rule. Stores Tax representation, with condition that should be met.</summary>
 /// <typeparam name="TElement">Element type for which Tax Rule is created.</typeparam>

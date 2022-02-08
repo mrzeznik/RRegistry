@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaxHandler\TaxHandler.csproj" />
-    <ProjectReference Include="..\TaxHandler.DataGenerator\TaxHandler.DataGenerator.csproj" />
+    <ProjectReference Include="..\TaxRegistry\TaxRegistry.csproj" />
+    <ProjectReference Include="..\TaxRegistry.DataGenerator\TaxRegistry.DataGenerator.csproj" />
   </ItemGroup>
 
 </Project>

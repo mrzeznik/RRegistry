@@ -1,6 +1,6 @@
-﻿namespace TaxHandler;
+﻿namespace TaxRegistry;
 
-public class TaxHandler<TElement> : ITaxHandler<TElement>
+public class TaxRegistry<TElement> : ITaxRegistry<TElement>
 {
     private IList<TaxRule<TElement>> _rules = new List<TaxRule<TElement>>();
     private TaxRule<TElement>? _defaultTaxRule = null;

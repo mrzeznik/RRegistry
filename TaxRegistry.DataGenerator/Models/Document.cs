@@ -1,4 +1,4 @@
-namespace TaxHandler.DataGenerator;
+namespace TaxRegistry.DataGenerator;
 
 /// <summary>Intended for tests only</summary>
 public sealed class FooDocument

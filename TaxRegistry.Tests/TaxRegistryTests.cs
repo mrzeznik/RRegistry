@@ -1,8 +1,8 @@
 using System;
 using Xunit;
-using TaxHandler.DataGenerator;
+using TaxRegistry.DataGenerator;
 
-namespace TaxHandler.Tests;
+namespace TaxRegistry.Tests;
 
 public class UnitTest1
 {
@@ -16,9 +16,9 @@ public class UnitTest1
             TaxValue = 1
         };
 
-        var taxHandler = new TaxHandler<FooDocument>();
-        taxHandler.RegisterRule(taxRule);
-        var foundTax = taxHandler.GetRule("Rule #1");
+        var taxRegistry = new TaxRegistry<FooDocument>();
+        taxRegistry.RegisterRule(taxRule);
+        var foundTax = taxRegistry.GetRule("Rule #1");
 
         Assert.Equal(taxRule, foundTax);
     }
@@ -33,12 +33,12 @@ public class UnitTest1
             TaxValue = 1
         };
 
-        var taxHandler = new TaxHandler<FooDocument>();
-        taxHandler.RegisterRule(taxRule);
+        var taxRegistry = new TaxRegistry<FooDocument>();
+        taxRegistry.RegisterRule(taxRule);
 
         var document = FooDocument.CreateDummy();
 
-        var foundTax = taxHandler.GetRule(document);
+        var foundTax = taxRegistry.GetRule(document);
 
         Assert.NotNull(foundTax);
         Assert.Equal(taxRule, foundTax);
@@ -54,12 +54,12 @@ public class UnitTest1
             TaxValue = 5
         };
 
-        var taxHandler = new TaxHandler<FooProduct>();
-        taxHandler.RegisterRule(taxRule);
+        var taxRegistry = new TaxRegistry<FooProduct>();
+        taxRegistry.RegisterRule(taxRule);
 
         var product = FooProduct.CreateDummy();
 
-        var foundTax = taxHandler.GetRule(product);
+        var foundTax = taxRegistry.GetRule(product);
 
         Assert.NotNull(foundTax);
         Assert.Equal(taxRule, foundTax);
@@ -68,7 +68,7 @@ public class UnitTest1
     [Fact]
     public void Rule_NotAplicable_Fail()
     {
-        var taxHandler = new TaxHandler<FooProduct>();
+        var taxRegistry = new TaxRegistry<FooProduct>();
         var taxRule = new TaxRule<FooProduct>()
         {
             Name = "Domestic Toys",
@@ -76,7 +76,7 @@ public class UnitTest1
             TaxValue = 5
         };
 
-        taxHandler.RegisterRule(taxRule);
+        taxRegistry.RegisterRule(taxRule);
 
         var product = new FooProduct
         {
@@ -85,7 +85,7 @@ public class UnitTest1
             CountryOfOrigin = "CN"
         };
 
-        var foundTax = taxHandler.GetRule(product);
+        var foundTax = taxRegistry.GetRule(product);
 
         Assert.Null(foundTax);
     }
@@ -93,8 +93,8 @@ public class UnitTest1
     [Fact]
     public void Rule_Default_Assigned()
     {
-        // just create tax handler and don't register any TaxRules, other than default
-        var taxHandler = new TaxHandler<FooProduct>();
+        // just create tax registry and don't register any TaxRules, other than default
+        var taxRegistry = new TaxRegistry<FooProduct>();
 
         var defaultTaxRule = new TaxRule<FooProduct>()
         {
@@ -103,7 +103,7 @@ public class UnitTest1
             TaxValue = 0
         };
 
-        taxHandler.SetDefaultRule(defaultTaxRule);
+        taxRegistry.SetDefaultRule(defaultTaxRule);
 
         var product = new FooProduct
         {
@@ -112,7 +112,7 @@ public class UnitTest1
             CountryOfOrigin = "CN"
         };
 
-        var foundTax = taxHandler.GetRule(product);
+        var foundTax = taxRegistry.GetRule(product);
 
         Assert.NotNull(foundTax);
         Assert.Equal(defaultTaxRule, foundTax);
