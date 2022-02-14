@@ -39,7 +39,3 @@ This project is an approach to create configurable Tax registry.
     var foundTaxRule = taxRegistry.GetRule(product);
     // foundTaxRule => TaxRule "Domestic Toys" 
     ```
-
-## Todo
-- ~~set default tax~~
-- return all applicable tax rules instead of only first one
