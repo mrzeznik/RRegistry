@@ -11,5 +11,5 @@ public record TaxRule<TElement>
     public string Name { get; set; } = string.Empty;
 
     /// <summary>Tax that will be applied, when condition is met.</summary>
-    public int TaxValue { get; set; }
+    public decimal TaxValue { get; set; }
 }
