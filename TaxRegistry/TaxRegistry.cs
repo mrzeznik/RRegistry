@@ -1,32 +1,32 @@
-﻿namespace TaxRegistry;
+﻿namespace RRegistry;
 
-public class TaxRegistry<TElement> : ITaxRegistry<TElement>
+public class TaxRegistry<TElement> : IRegistry<TElement, decimal>
 {
-    private IList<TaxRule<TElement>> _rules = new List<TaxRule<TElement>>();
-    private TaxRule<TElement>? _defaultTaxRule = null;
+    private readonly IReadOnlySet<Rule<TElement, decimal>> _rules = new HashSet<Rule<TElement, decimal>>();
+    private readonly Rule<TElement, decimal>? _defaultTaxRule = null;
 
-    public void RegisterRule(TaxRule<TElement> taxRule)
+    public TaxRegistry(IEnumerable<Rule<TElement, decimal>> rules, Rule<TElement, decimal>? defaultTaxRule = null)
     {
-        _rules.Add(taxRule);
+        _defaultTaxRule = defaultTaxRule;
+        _rules = rules.ToHashSet();
     }
 
-    public TaxRule<TElement> GetRule(string ruleIdentifier)
+    public TaxRegistry()
     {
-        return _rules.Single(x => x.Name.Equals(ruleIdentifier));
     }
 
-    public TaxRule<TElement> GetRule(TElement document)
+    public Rule<TElement, decimal>? FindRule(string ruleIdentifier)
+    {
+        return _rules.SingleOrDefault(x => x.Name.Equals(ruleIdentifier)) ?? _defaultTaxRule;
+    }
+
+    public Rule<TElement, decimal>? MatchRule(TElement element)
     {
         foreach (var rule in _rules)
         {
-            if (rule.Condition.Invoke(document)) return rule;
+            if (rule.Condition.Invoke(element)) return rule;
         }
 
         return _defaultTaxRule!;
-    }
-
-    public void SetDefaultRule(TaxRule<TElement>? taxRule = null)
-    {
-        _defaultTaxRule = taxRule;
     }
 }

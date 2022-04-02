@@ -1,4 +1,4 @@
-namespace TaxRegistry.DataGenerator;
+namespace RRegistry.DataGenerator;
 
 /// <summary>Intended for tests only</summary>
 public sealed class FooProduct
