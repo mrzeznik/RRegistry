@@ -9,20 +9,21 @@ I frequently required to select Tax basing on some properties of element:
 This project is an approach to create configurable Registry.
 
 ## Basic usage:
-1. Create methods / Predicates that will serve as *Conditions*:
+1. Define a *Condition*, *Rule* and *Value* that should be assigned to matched elements:
     ```csharp
-    static bool IsDomesticToy(FooProduct element) => element.Type.Equals("TOY", StringComparison.OrdinalIgnoreCase)
+    static bool IsDomesticToyCondition(FooProduct element) => element.Type.Equals("TOY", StringComparison.OrdinalIgnoreCase)
             && element.CountryOfOrigin.Equals("PL", StringComparison.OrdinalIgnoreCase);
+
+    var firstRule = new Rule<FooProduct, decimal>()
+    {
+        Name = "Domestic Toys",
+        Condition = IsDomesticToyCondition,
+        Value = 0.05
+    };
     ```
 2. Create *Registry* instance with given set of *Rules*:
     ```csharp
-    var taxRule = new Rule<FooProduct, decimal>()
-    {
-        Name = "Domestic Toys",
-        Condition = IsDomesticToy,
-        Value = 0.05
-    };
-    var taxRegistry = new TaxRegistry(new { taxRule });
+    var taxRegistry = new TaxRegistry(new { firstRule });
     ```
 3. Ask to match *Rule* for given *element*:
     ```csharp
