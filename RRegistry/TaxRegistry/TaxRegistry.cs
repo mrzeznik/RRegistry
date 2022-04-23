@@ -12,13 +12,14 @@ public class TaxRegistry<TElement> : IRegistry<TElement, decimal?>
         _rules = rules.ToHashSet();
     }
 
-    public TaxRegistry()
+    internal TaxRegistry()
     {
+        // do not expose constructor without parameters
     }
 
     public Rule<TElement, decimal?>? FindRule(string ruleIdentifier)
     {
-        return _rules.SingleOrDefault(x => x.Name.Equals(ruleIdentifier));;
+        return _rules.SingleOrDefault(x => x.Name.Equals(ruleIdentifier)); ;
     }
 
     public Rule<TElement, decimal?>? MatchRule(TElement element)

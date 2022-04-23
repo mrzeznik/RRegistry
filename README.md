@@ -1,14 +1,19 @@
 # Rule Registry
-Generic Rule Registry that allows to look for Rule matching given element.  
+Generic Rule Registry that allows to store and then look for Rules & Values matching given element.  
 
-I frequently required to select Tax basing on some properties of element:
-- for invoices: issuer country & invoice date 
+I frequently required to assign Tax basing on some properties of element:
+- for invoices: issuer country & line type 
 - for products: product type & country of origin, etc.
-- for services: service category
 
-This project is an approach to create configurable Registry.
+This project is an approach to create configurable & flexible Registry that can hold and select proper Values.
 
 ## Basic usage:
+One can either:
+- implement IRegistry interface
+- use prefedined Registry implementations: Tax Registry or Action Registry
+
+### Tax Registry
+This is predefined implementation, available in `RRegsitry.Tax` namespace.
 1. Define a *Condition*, *Rule* and *Value* that should be assigned to matched elements:
     ```csharp
     static bool IsDomesticToyCondition(FooProduct element) => element.Type.Equals("TOY", StringComparison.OrdinalIgnoreCase)
@@ -36,3 +41,8 @@ This project is an approach to create configurable Registry.
     var foundTaxRule = taxRegistry.MatchRule(product);
     // foundTaxRule => TaxRule "Domestic Toys" 
     ```
+
+### Action Registry
+One can use it to create Registry of Actions, that can be used to modify object's parameters.
+
+See `RRegistry.Action` namespace and `ActionRegistryTests.cs` file for more details.
