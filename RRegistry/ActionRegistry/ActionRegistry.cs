@@ -8,7 +8,7 @@ public class ActionRegistry<TElement> : IRegistry<TElement, Action<TElement>>
     public ActionRegistry(IEnumerable<Rule<TElement, Action<TElement>>> rules, Rule<TElement, Action<TElement>>? defaultTaxRule = null)
     {
         _defaultTaxRule = defaultTaxRule;
-        _rules = rules.ToHashSet();
+        _rules = rules?.ToHashSet() ?? throw new ArgumentNullException(nameof(rules));
     }
 
     internal ActionRegistry()
@@ -18,7 +18,7 @@ public class ActionRegistry<TElement> : IRegistry<TElement, Action<TElement>>
 
     public Rule<TElement, Action<TElement>>? FindRule(string ruleIdentifier)
     {
-        return _rules.SingleOrDefault(x => x.Name.Equals(ruleIdentifier)) ?? _defaultTaxRule;
+        return _rules.SingleOrDefault(x => x.Name.Equals(ruleIdentifier));
     }
 
     public Rule<TElement, Action<TElement>>? MatchRule(TElement element)

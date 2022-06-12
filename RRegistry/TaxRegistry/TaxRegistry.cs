@@ -19,7 +19,7 @@ public class TaxRegistry<TElement> : IRegistry<TElement, decimal?>
 
     public Rule<TElement, decimal?>? FindRule(string ruleIdentifier)
     {
-        return _rules.SingleOrDefault(x => x.Name.Equals(ruleIdentifier)); ;
+        return _rules.SingleOrDefault(x => x.Name.Equals(ruleIdentifier));
     }
 
     public Rule<TElement, decimal?>? MatchRule(TElement element)

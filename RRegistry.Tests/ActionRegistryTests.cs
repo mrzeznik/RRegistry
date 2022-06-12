@@ -7,7 +7,23 @@ namespace RRegistry.Tests;
 public class ActionRegistryTests
 {
     [Fact]
-    public void Rule_Register_Pass()
+    public void Register_NoActionRules_Fails()
+    {
+        Assert.Throws<ArgumentNullException>(() =>
+        {
+            var registry = new ActionRegistry<string>(null);
+        });
+    }
+
+    [Fact]
+    public void Register_EmptyActionRules_Pass()
+    {
+        var rules = new Rule<string, Action<string>>[] { };
+        Assert.NotNull(new ActionRegistry<string>(rules));
+    }
+
+    [Fact]
+    public void Register_Rule_Pass()
     {
         // given
         var actionRule = new Rule<TestObject, Action<TestObject>>()
