@@ -8,7 +8,7 @@ namespace RRegistry.Tests;
 public class TaxRegistryBuilderTests
 {
     [Fact]
-    public void Rule_Register_Pass()
+    public void Register_Rule_Pass()
     {
         var taxRule = new Rule<FooDocument, decimal?>()
         {
@@ -26,7 +26,7 @@ public class TaxRegistryBuilderTests
     }
 
     [Fact]
-    public void Registry_Build_Pass()
+    public void Build_Registry_Pass()
     {
         var builder = new TaxRegistryBuilder<FooDocument>();
         var taxRule = new Rule<FooDocument, decimal?>()

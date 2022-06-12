@@ -13,7 +13,7 @@ public class BaseRegistry<TElement, TOutput> : IRegistry<TElement, TOutput>
 
     internal BaseRegistry()
     {
-        // do not expose constructor without parameters
+        // exposed to be accessed by builders, otherwise do not expose constructor without parameters
     }
 
     public virtual Rule<TElement, TOutput>? FindRule(string ruleIdentifier)

@@ -1,3 +1,5 @@
+using System;
+
 namespace RRegistry;
 
 /// <summary>Representation of single Rule. Stores representation, with condition that should be met.</summary>
@@ -12,4 +14,16 @@ public record Rule<TElement, TOutput>
 
     /// <summary>Value assigned to this Rule, that can be used, when Condition is met.</summary>
     public virtual TOutput? Value { get; init; }
+
+    public static Rule<TElement, TOutput> Create(Predicate<TElement> condition, TOutput value, string? name = null)
+    {
+        ArgumentNullException.ThrowIfNull(condition, nameof(condition));
+
+        return new Rule<TElement, TOutput>
+        {
+            Condition = condition,
+            Name = name ?? Guid.NewGuid().ToString(),
+            Value = value
+        };
+    }
 }
