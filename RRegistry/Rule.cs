@@ -9,8 +9,8 @@ public record Rule<TElement, TOutput>
     /// <summary>Condition under which this Rule can be applied.</summary>
     public virtual Predicate<TElement> Condition { get; init; } = _ => false;
 
-    /// <summary>Name Identifier for rule.</summary>
-    public string Name { get; init; } = string.Empty;
+    /// <summary>Name Identifier for rule. Defaults to new GUID.</summary>
+    public string Name { get; init; } = Guid.NewGuid().ToString();
 
     /// <summary>Value assigned to this Rule, that can be used, when Condition is met.</summary>
     public virtual TOutput? Value { get; init; }
