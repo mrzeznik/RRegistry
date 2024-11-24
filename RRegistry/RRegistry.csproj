@@ -7,6 +7,11 @@
     <Version>0.4.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Generic Registry, that allows to match generic output, basing on set of defined rules and given element properties.</Description>
+    <Authors>Michal Rzeznik</Authors>
+    <PackageTags>registry;rules;generic</PackageTags>
+    <RepositoryUrl>https://github.com/mrzeznik/RRegistry</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>../README.md</PackageReadmeFile>
   </PropertyGroup>
 
 </Project>
