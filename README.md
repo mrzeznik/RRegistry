@@ -37,7 +37,7 @@ var domesticToyRule = new Rule<FooProduct, decimal>()
 
 Create a registry instance with the given set of rules:
 ```csharp
-var taxRegistry = new TaxRegistry<FooProduct>(new[] { domesticToyRule });
+var taxRegistry = new BaseRegistry<FooProduct>(new[] { domesticToyRule });
 ```
 
 ### Matching a Rule
@@ -62,6 +62,7 @@ Here's a complete example demonstrating the basic usage of the Rule Registry:
 using System;
 using System.Collections.Generic;
 using RRegistry;
+using RRegistry.Samples.TaxRegistry;
 
 public class FooProduct
 {

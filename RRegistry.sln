@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RRegistry.Tests", "RRegistr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RRegistry", "RRegistry\RRegistry.csproj", "{3D4CD057-010F-4D99-B571-2884F48642CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RRegistry.Samples", "RRegistry.Samples\RRegistry.Samples.csproj", "{37E9A287-965A-4920-BC6D-50DD539E0669}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{3D4CD057-010F-4D99-B571-2884F48642CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D4CD057-010F-4D99-B571-2884F48642CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D4CD057-010F-4D99-B571-2884F48642CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37E9A287-965A-4920-BC6D-50DD539E0669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E9A287-965A-4920-BC6D-50DD539E0669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E9A287-965A-4920-BC6D-50DD539E0669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E9A287-965A-4920-BC6D-50DD539E0669}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

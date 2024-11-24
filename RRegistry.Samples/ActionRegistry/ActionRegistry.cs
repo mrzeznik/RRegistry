@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using RRegistry;
 
-namespace RRegistry.Tests.ActionRegistry;
+namespace RRegistry.Samples.ActionRegistry;
 
 ///<summary>Generic System.Action rules registry, so you can invoke some sort of action basing on checked object's properties.</summary>
 public class ActionRegistry<TElement> : BaseRegistry<TElement, Action<TElement>>

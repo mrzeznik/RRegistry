@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using RRegistry;
 
-namespace RRegistry.Tests.ProductRegistry;
+namespace RRegistry.Samples.ProductRegistry;
 
 ///<summary>Semi-generic registry, that will store Rules for objects of FooProduct type, and returns of TOutputElement type.</summary>
 public class ProductRegistry<TOutputElement>(

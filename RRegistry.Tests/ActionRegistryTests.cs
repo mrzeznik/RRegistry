@@ -1,7 +1,6 @@
 using System;
 
-using RRegistry.Tests.ActionRegistry;
-
+using RRegistry.Samples.ActionRegistry;
 using Xunit;
 
 namespace RRegistry.Tests;

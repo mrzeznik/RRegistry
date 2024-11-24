@@ -1,6 +1,8 @@
 using System;
+
+using RRegistry.Samples.ProductRegistry;
+
 using Xunit;
-using RRegistry.Tests.ProductRegistry;
 
 namespace RRegistry.Tests;
 

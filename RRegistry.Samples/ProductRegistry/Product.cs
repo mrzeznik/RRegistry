@@ -1,4 +1,4 @@
-namespace RRegistry.Tests.ProductRegistry;
+namespace RRegistry.Samples.ProductRegistry;
 
 /// <summary>Intended for tests only</summary>
 public sealed class FooProduct
